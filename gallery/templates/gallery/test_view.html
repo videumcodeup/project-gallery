@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+{% for repo in object_list %}
+    <h2>{{ repo.name }}</h2><br>
+
+    {% if repo.description|length != 0 %}
+        {{ repo.description }}<br>
+    {% endif %}
+    {{ repo.svn_url }}<br>
+{%  endfor %}
+</body>
+</html>

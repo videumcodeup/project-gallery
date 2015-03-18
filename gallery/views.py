@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 import json
 import httplib
+
+from django.http import HttpResponse
+from django.views.generic import ListView
 
 from .models import Repo
 # Create your views here.
@@ -32,3 +33,8 @@ def github_hook(request):
 
   data = {"status": "ok"}
   return HttpResponse(json.dumps(repos_from_github), content_type='application/json')
+
+
+class TestView(ListView):
+    model = Repo
+    template_name = 'gallery/test_view.html'
