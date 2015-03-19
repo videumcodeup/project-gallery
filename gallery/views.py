@@ -99,6 +99,37 @@ def github_hook(request):
     else:
         return HttpResponse(json.dumps({'status':'fail'}), content_type='application/json')
 
+def allReposAndContributersJSON(request):
+
+    repos_list = []
+    contributers_list = []
+
+    for repo in Repo.objects.all():
+        repo = {
+            'id' : repo.id,
+            'name' : repo.name,
+            'description' : repo.description,
+            'html_url' : repo.html_url,
+            'watchers' : repo.watchers,
+            'language' : repo.language
+        }
+        repos_list.append(repo)
+
+    for con in Contributor.objects.all():
+        contributer = {
+            'name' : con.name,
+            'html_url' : con.html_url,
+            'avatar_url' : con.avatar_url,
+            'repos' : [r.id for r in con.repos.all()]
+        }
+        contributers_list.append(contributer)
+
+    data = {
+        'repos':repos_list,
+        'contributers':contributers_list
+    }
+
+    return HttpResponse(json.dumps(data), content_type='application/json')
 
 class TestView(ListView):
     model = Repo
