@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <title>Test View Json</title>
+</head>
+<body>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url:"/json",
+            type:"GET",
+            dataType:"json",
+            success: function(json){
+
+                for (var i = 0 ; i < json['repos'].length ; i++){
+                    console.log(json['repos'][i]);
+                }
+            }
+        })
+    });
+</script>
+
+
+</body>
+</html>

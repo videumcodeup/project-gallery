@@ -6,8 +6,9 @@ from django.db import models
 class Repo(models.Model):
     github_id = models.IntegerField(unique=True)
     name = models.CharField(max_length=254)
+    slug = models.SlugField()
     description = models.TextField()
-    svn_url = models.CharField(max_length=254)
+    html_url = models.CharField(max_length=254)
     watchers = models.IntegerField()
     language = models.CharField(max_length=254, blank=True, null=True)
 
