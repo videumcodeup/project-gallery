@@ -10,6 +10,9 @@ from django.core import serializers
 
 from .models import Repo, Contributor
 
+class IndexTemplateView(TemplateView):
+    template_name = 'gallery/index_template_view.html'
+
 # Removing unwanted chars to slug
 def create_slug(text):
     slug_string = ''
