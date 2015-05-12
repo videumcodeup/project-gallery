@@ -7,6 +7,7 @@ import string
 from django.http import HttpResponse
 from django.views.generic import ListView, TemplateView
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Repo, Contributor
 
@@ -95,7 +96,7 @@ def getReposFromGithubAndSaveIfNotInDatabase():
 
     return True
 
-
+@csrf_exempt
 def github_hook(request):
     if getReposFromGithubAndSaveIfNotInDatabase() == True:
           return HttpResponse(json.dumps({'status':'ok'}), content_type='application/json')
